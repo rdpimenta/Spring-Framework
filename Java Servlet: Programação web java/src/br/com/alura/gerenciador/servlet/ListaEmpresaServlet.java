@@ -13,7 +13,7 @@ import java.util.List;
 public class ListaEmpresaServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         System.out.println("Lista de empresas:");
 
         List<Empresa> listaDeEmpresas = Banco.getLista();
