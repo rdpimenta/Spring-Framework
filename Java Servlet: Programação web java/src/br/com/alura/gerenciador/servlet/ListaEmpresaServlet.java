@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @WebServlet("/listaEmpresas")
 public class ListaEmpresaServlet extends HttpServlet {
@@ -17,7 +16,7 @@ public class ListaEmpresaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         System.out.println("Lista de empresas:");
 
-        List<String> listaDeEmpresas = Banco.getLista().stream().map(Empresa::getNome).collect(Collectors.toList());
+        List<Empresa> listaDeEmpresas = Banco.getLista();
 
         RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");
         request.setAttribute("listaDeEmpresas", listaDeEmpresas);
