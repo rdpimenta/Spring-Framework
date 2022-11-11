@@ -1,6 +1,7 @@
 package br.com.alura.gerenciador.servlet;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Empresa {
     private int id;
@@ -30,5 +31,18 @@ public class Empresa {
 
     public void setDataDeAbertura(Date dataDeAbertura) {
         this.dataDeAbertura = dataDeAbertura;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Empresa empresa = (Empresa) o;
+        return id == empresa.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
