@@ -1,4 +1,4 @@
-package br.com.alura.gerenciador.servlet;
+package br.com.alura.gerenciador.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,5 +41,9 @@ public class Banco {
 
     public void removeEmpresa(Empresa empresa) {
         lista.remove(empresa);
+    }
+
+    public List<Empresa> getEmpresas() {
+        return lista;
     }
 }

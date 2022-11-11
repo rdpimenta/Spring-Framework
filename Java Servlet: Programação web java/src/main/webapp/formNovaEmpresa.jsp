@@ -1,6 +1,6 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
-<c:url value="/novaEmpresa" var="linkServletNovaEmpresa"/>
-<c:url value="/editaEmpresa?id=${empresa.id}" var="linkServletEditaEmpresa"/>
+<c:url value="/entrada?acao=NovaEmpresa" var="linkServletNovaEmpresa"/>
+<c:url value="/entrada?acao=AlteraEmpresa" var="linkServletEditaEmpresa"/>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <fmt:formatDate value="${empresa.dataDeAbertura}" pattern="dd/MM/yyyy" var="data" />
 
