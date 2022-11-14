@@ -5,6 +5,7 @@ import br.com.alura.gerenciador.modelo.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class Login implements Acao {
@@ -17,6 +18,8 @@ public class Login implements Acao {
         Usuario usuario = banco.existeUsuario(login, senha);
 
         if (usuario != null) {
+            HttpSession httpSession = request.getSession();
+            httpSession.setAttribute("usuarioLogado", usuario);
             return "redirect:entrada?acao=ListaEmpresas";
         }
         return "redirect:entrada?acao=LoginForm";

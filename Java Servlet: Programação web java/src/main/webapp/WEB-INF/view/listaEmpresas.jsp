@@ -3,11 +3,19 @@
 
 <html>
     <body>
+    <c:import url="logout-parcial.jsp"/>
+
+    Usuario Logado: ${usuarioLogado.login }
+
+    <br>
+    <br>
+    <br>
+
         <c:if test="${not empty empresa}">
                     Empresa ${ empresa } cadastrada com sucesso!
         </c:if>
 
-        <h1>Lista de empresas:</h1>
+        <h1>Lista de empresas:</h1> </br>
         <ul>
             <c:forEach items="${ listaDeEmpresas }" var="empresa">
                 <li>

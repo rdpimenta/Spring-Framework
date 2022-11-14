@@ -11,6 +11,8 @@
     <title>Insert title here</title>
 </head>
 <body>
+    <c:import url="logout-parcial.jsp"/>
+
     <c:if test= "${not empty empresa}">
         <form action="${linkServletEditaEmpresa}" method="post">
             Nome: <input type="text" name="nome" value="${empresa.nome}" />
