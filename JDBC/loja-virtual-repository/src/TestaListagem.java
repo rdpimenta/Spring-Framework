@@ -1,16 +1,13 @@
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class TestaListagem {
     public static void main(String[] args) throws SQLException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
         Connection connection = connectionFactory.recuperarConexao();
 
-        Statement statement = connection.createStatement();
+        PreparedStatement statement = connection.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
 
-        statement.execute("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
+        statement.execute();
 
         ResultSet resultSet = statement.getResultSet();
 
