@@ -13,6 +13,7 @@ public class Produto {
     private String nome;
     private String descricao;
     private BigDecimal preco;
+    @Column(name = "data_cadastro")
     private LocalDate dataCadastro = LocalDate.now();
     @ManyToOne
     private Categoria categoria;
