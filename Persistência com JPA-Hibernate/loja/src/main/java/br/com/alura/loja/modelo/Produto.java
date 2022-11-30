@@ -1,11 +1,17 @@
 package br.com.alura.loja.modelo;
 
+import net.bytebuddy.matcher.NameMatcher;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "produtos")
+@NamedQuery(
+        name = "Produto.produtosPorCategoria",
+        query = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome"
+)
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
