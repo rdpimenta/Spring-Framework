@@ -37,7 +37,7 @@ public class MedicoController {
 
     @PutMapping
     @Transactional
-    public void atualizar(
+    public void exclui(
             @RequestBody
             @Valid
             DadosAtualizacaoMedico dados
@@ -48,7 +48,7 @@ public class MedicoController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void atualizar(
+    public void exclui(
             @PathVariable
             Long id
     ) {

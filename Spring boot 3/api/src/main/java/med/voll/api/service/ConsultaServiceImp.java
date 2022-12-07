@@ -72,7 +72,7 @@ public class ConsultaServiceImp implements ConsultaService {
 
     private Medico selecionarMedicoAleatorio(DadosCadastroConsulta dados) {
         List<Medico> medicos = medicoRepository.findAll();
-        for (Medico medico: medicos) {
+        for (Medico medico : medicos) {
             if (medicoEstaDisponivel(medico, dados) && medico.getAtivo()) {
                 return medico;
             }
@@ -94,7 +94,7 @@ public class ConsultaServiceImp implements ConsultaService {
     private void checaAntecedencia(DadosCadastroConsulta dados) {
         if (
                 dados.horarioInicio().isBefore(LocalTime.now().plusMinutes(30))
-                && dados.dataConsulta().equals(LocalDate.now())
+                        && dados.dataConsulta().equals(LocalDate.now())
         ) {
             throw new RuntimeException("Horário não bate com antecedência.");
         }
@@ -117,7 +117,8 @@ public class ConsultaServiceImp implements ConsultaService {
 
         consultas.forEach(consulta -> {
             if (
-                    consulta.getPaciente().getId().equals(paciente.getId())
+                    consulta.getAtiva()
+                            && consulta.getPaciente().getId().equals(paciente.getId())
                             && consulta.getDataConsulta().equals(dados.dataConsulta())
             ) {
                 throw new RuntimeException("Paciente já possui consulta neste dia.");
@@ -128,9 +129,10 @@ public class ConsultaServiceImp implements ConsultaService {
     private Boolean medicoEstaDisponivel(Medico medico, DadosCadastroConsulta dados) {
         List<Consulta> consultas = consultaRepository.findAll();
 
-        for (Consulta consulta: consultas) {
+        for (Consulta consulta : consultas) {
             if (
-                    consulta.getMedico().getId().equals(medico.getId())
+                    consulta.getAtiva()
+                            && consulta.getMedico().getId().equals(medico.getId())
                             && consulta.getDataConsulta().equals(dados.dataConsulta())
                             && !validaHorarioConsulta(consulta, dados.horarioInicio())
             ) {
