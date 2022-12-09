@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImproveNamingStrategy
+  datasource:
+    url: jdbc:mysql://localhost/spring_data_jpa
+    username: root
+    password:
