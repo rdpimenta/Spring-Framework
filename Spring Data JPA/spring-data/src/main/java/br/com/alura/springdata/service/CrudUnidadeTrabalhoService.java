@@ -1,4 +1,4 @@
-package br.com.alura.spring.data.service;
+package br.com.alura.springdata.service;
 
 import br.com.alura.springdata.orm.UnidadeTrabalho;
 import br.com.alura.springdata.repository.UnidadeTrabalhoRepository;
