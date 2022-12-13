@@ -25,6 +25,11 @@ public class Funcionario {
     @JoinTable(name = "funcionarios_unidades", joinColumns = {@JoinColumn(name = "fk_funcionario")}, inverseJoinColumns = {@JoinColumn(name = "fk_unidade")})
     private List<UnidadeTrabalho> unidadeTrabalhos;
 
+    @Override
+    public String toString() {
+        return "[Funcionario: [id: " + id + ", nome: " + nome + ", cpf: " + cpf + ", salario: " + salario + ", data: " + dataContratacao + "]]";
+    }
+
     public Integer getId() {
         return id;
     }
