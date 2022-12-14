@@ -34,15 +34,4 @@ public record DadosListagemConsulta(
                 consulta.getMotivoCancelamento()
         );
     }
-
-    public DadosListagemConsulta(Long id, LocalDate dataConsulta, LocalTime horarioInicio, LocalTime horarioFim, DadosListagemMedico medico, DadosListagemPaciente paciente, Boolean ativa, MotivoCancelamento motivoCancelamento) {
-        this.id = id;
-        this.dataConsulta = dataConsulta;
-        this.horarioInicio = horarioInicio;
-        this.horarioFim = horarioFim;
-        this.medico = medico;
-        this.paciente = paciente;
-        this.ativa = ativa;
-        this.motivoCancelamento = motivoCancelamento;
-    }
 }
