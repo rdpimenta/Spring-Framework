@@ -2,12 +2,13 @@ package med.voll.api.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import med.voll.api.domain.consulta.ConsultaRepository;
-import med.voll.api.domain.consulta.DadosCadastroConsulta;
-import med.voll.api.domain.consulta.DadosCancelamentoConsulta;
+import med.voll.api.domain.consulta.*;
+import med.voll.api.domain.medico.DadosListagemMedico;
 import med.voll.api.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("consultas")
@@ -37,5 +38,10 @@ public class ConsultaController {
     ) {
         var consulta = consultaRepository.getReferenceById(dados.id());
         consulta.cancela(dados.motivo());
+    }
+
+    @GetMapping
+    public List<DadosListagemConsulta> listar() {
+        return consultaRepository.findAll().stream().map(DadosListagemConsulta::new).toList();
     }
 }
