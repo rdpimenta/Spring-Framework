@@ -27,7 +27,7 @@ public class ConsultaServiceImp implements ConsultaService {
     ConsultaRepository consultaRepository;
 
     @Override
-    public void criaConsulta(DadosCadastroConsulta dados) {
+    public Consulta criaConsulta(DadosCadastroConsulta dados) {
         validaDataEHorario(dados);
         checaAntecedencia(dados);
 
@@ -39,7 +39,7 @@ public class ConsultaServiceImp implements ConsultaService {
                 validaPacienteAtivo(paciente);
                 validaConsultaPaciente(paciente, dados);
 
-                salvaConsulta(dados, medico, paciente);
+                return salvaConsulta(dados, medico, paciente);
             } else {
                 throw new RuntimeException("Consulta não pode ser salva.");
             }
@@ -51,14 +51,14 @@ public class ConsultaServiceImp implements ConsultaService {
             validaPacienteAtivo(paciente);
             validaConsultaPaciente(paciente, dados);
             if (medicoEstaDisponivel(medico, dados)) {
-                salvaConsulta(dados, medico, paciente);
+                return salvaConsulta(dados, medico, paciente);
             } else {
                 throw new RuntimeException("Consulta não pode ser salva.");
             }
         }
     }
 
-    private void salvaConsulta(DadosCadastroConsulta dados, Medico medico, Paciente paciente) {
+    private Consulta salvaConsulta(DadosCadastroConsulta dados, Medico medico, Paciente paciente) {
         Consulta consulta = new Consulta(
                 dados.dataConsulta(),
                 dados.horarioInicio(),
@@ -68,6 +68,7 @@ public class ConsultaServiceImp implements ConsultaService {
         );
 
         consultaRepository.save(consulta);
+        return consulta;
     }
 
     private Medico selecionarMedicoAleatorio(DadosCadastroConsulta dados) {

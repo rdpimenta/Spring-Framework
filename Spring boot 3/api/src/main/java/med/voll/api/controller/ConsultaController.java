@@ -2,11 +2,15 @@ package med.voll.api.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import med.voll.api.domain.consulta.*;
-import med.voll.api.domain.medico.DadosListagemMedico;
+import med.voll.api.domain.consulta.ConsultaRepository;
+import med.voll.api.domain.consulta.DadosCadastroConsulta;
+import med.voll.api.domain.consulta.DadosCancelamentoConsulta;
+import med.voll.api.domain.consulta.DadosListagemConsulta;
 import med.voll.api.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -21,27 +25,35 @@ public class ConsultaController {
 
     @PostMapping
     @Transactional
-    public void criaConsulta(
+    public ResponseEntity criaConsulta(
             @RequestBody
             @Valid
-            DadosCadastroConsulta dados
+            DadosCadastroConsulta dados,
+            UriComponentsBuilder builder
     ) {
-        consultaService.criaConsulta(dados);
+        var consulta = consultaService.criaConsulta(dados);
+        var uri = builder.path("/consultas/{id}").buildAndExpand(consulta.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(consulta);
     }
 
     @DeleteMapping
     @Transactional
-    public void cancela(
+    public ResponseEntity cancela(
             @RequestBody
             @Valid
             DadosCancelamentoConsulta dados
     ) {
         var consulta = consultaRepository.getReferenceById(dados.id());
         consulta.cancela(dados.motivo());
+
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping
-    public List<DadosListagemConsulta> listar() {
-        return consultaRepository.findAll().stream().map(DadosListagemConsulta::new).toList();
+    public ResponseEntity<List<DadosListagemConsulta>> listar() {
+        var lista = consultaRepository.findAll().stream().map(DadosListagemConsulta::new).toList();
+
+        return ResponseEntity.ok(lista);
     }
 }
