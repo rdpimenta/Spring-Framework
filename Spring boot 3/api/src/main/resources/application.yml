@@ -5,3 +5,7 @@ spring:
     url: jdbc:mysql://localhost/vollmed_api
     username: root
     password:
+
+server:
+  error:
+    include-stacktrace: never
