@@ -1,4 +1,4 @@
-package med.voll.api.service;
+package med.voll.api.service.consulta;
 
 import med.voll.api.domain.consulta.Consulta;
 import med.voll.api.domain.consulta.DadosCadastroConsulta;

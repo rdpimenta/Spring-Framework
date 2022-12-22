@@ -6,7 +6,7 @@ import med.voll.api.domain.consulta.ConsultaRepository;
 import med.voll.api.domain.consulta.DadosCadastroConsulta;
 import med.voll.api.domain.consulta.DadosCancelamentoConsulta;
 import med.voll.api.domain.consulta.DadosListagemConsulta;
-import med.voll.api.service.ConsultaService;
+import med.voll.api.service.consulta.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

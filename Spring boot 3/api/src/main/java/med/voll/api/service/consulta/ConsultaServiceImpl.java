@@ -1,4 +1,4 @@
-package med.voll.api.service;
+package med.voll.api.service.consulta;
 
 import med.voll.api.domain.consulta.Consulta;
 import med.voll.api.domain.consulta.ConsultaRepository;
@@ -16,7 +16,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Service
-public class ConsultaServiceImp implements ConsultaService {
+public class ConsultaServiceImpl implements ConsultaService {
     @Autowired
     MedicoRepository medicoRepository;
 
