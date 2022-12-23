@@ -38,7 +38,7 @@ public class MedicoController {
             Pageable paginacao
     ) {
         var page = medicoRepository
-                .findAllByAtivoTrue(paginacao)
+                .findAllByAtivoTrueOrderById(paginacao)
                 .map(DadosListagemMedico::new);
 
         return ResponseEntity.ok(page);
